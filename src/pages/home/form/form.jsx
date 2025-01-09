@@ -84,12 +84,15 @@ export const Form = () => {
                     trade_date: '',
                     buy_QTY: '',
                     buy_rate: '',
+                    buy_amount: '',
+                    buy_broker_amount: '',
+                    buy_fed_amount: '',
+                    // --------------------
                     sell_QTY: '',
                     sell_rate: '',
-                    buy_amount: '',
                     sell_amount: '',
-                    broker_amount: '',
-                    fed_amount: '',
+                    sell_broker_amount: '',
+                    sell_fed_amount: '',
                     net_amount: ''
 
                 }}
@@ -98,15 +101,16 @@ export const Form = () => {
                     addData(values)
                     resetForm();
                 }}
-                validationSchema={validationSchema}
-                validate={(values) => {
-                    const errors = {};
-                    const allEmpty = Object.values(values).every((value) => !value.trim());
-                    if (allEmpty) {
-                        errors.name = 'All fields cannot be empty';
-                    }
-                    return errors;
-                }}>
+            // validationSchema={validationSchema}
+            // validate={(values) => {
+            //     const errors = {};
+            //     const allEmpty = Object.values(values).every((value) => !value.trim());
+            //     if (allEmpty) {
+            //         errors.name = 'All fields cannot be empty';
+            //     }
+            //     return errors;
+            // }}
+            >
                 {({ handleBlur, handleChange, handleSubmit, values, errors, isValid, touched, setFieldValue }) => (
                     <form onSubmit={handleSubmit}>
 
@@ -129,7 +133,7 @@ export const Form = () => {
                                         onBlur={handleBlur}
                                         value={values.stockName}
                                     />
-                                    <ErrorMessage name="stockName" component="div" className="error" />
+                                    {/* <ErrorMessage name="stockName" component="div" className="error" /> */}
 
                                 </div>
 
@@ -138,14 +142,14 @@ export const Form = () => {
 
                                     <label className='input-field'>Trade Date</label>
                                     <DatePicker
-                                        selected={values.trade_date} // Controlled input value
+                                        selected={values.trade_date}
                                         onChange={(date) => handleChange({ target: { name: "trade_date", value: date } })} // Handle date change
                                         onBlur={handleBlur}
-                                        dateFormat="dd/MM/yyyy" // Optional date format
-                                        className="input" // Optional class for styling
+                                        dateFormat="dd/MM/yyyy"
+                                        className="input"
                                         placeholderText='Select trade date'
                                     />
-                                    <ErrorMessage name="trade_date" component="div" className="error" />
+                                    {/* <ErrorMessage name="trade_date" component="div" className="error" /> */}
 
 
                                 </div>
@@ -153,159 +157,186 @@ export const Form = () => {
 
                                     <label className='input-field'>Sett Date</label>
                                     <DatePicker
-                                        selected={values.sett_date} // Controlled input value
+                                        selected={values.sett_date}
                                         onChange={(date) => handleChange({ target: { name: "sett_date", value: date } })} // Handle date change
                                         onBlur={handleBlur}
-                                        dateFormat="dd/MM/yyyy" // Optional date format
-                                        className="input" // Optional class for styling
+                                        dateFormat="dd/MM/yyyy"
+                                        className="input"
                                         placeholderText=' Select sett date'
                                     />
-                                    <ErrorMessage name="sett_date" component="div" className="error" />
+                                    {/* <ErrorMessage name="sett_date" component="div" className="error" /> */}
                                 </div>
-                                <div className='form-input'>
+                                <div className='buy_form_style'>
+                                    {/* -------------------------Buy Form Data----------------------------------------- */}
+                                    <div className='form-input'>
 
-                                    <label className='input-field'>Buy QTY</label>
-                                    <input
-                                        className='input'
-                                        type="number"
+                                        <label className='input-field'>Buy QTY</label>
+                                        <input
+                                            className='input'
+                                            type="number"
 
-                                        placeholder="buy QTY..."
-                                        name='buy_QTY'
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.buy_QTY}
-                                    />
-                                    <ErrorMessage name="buy_QTY" component="div" className="error" />
+                                            placeholder="buy QTY..."
+                                            name='buy_QTY'
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.buy_QTY}
+                                        />
+                                        {/* <ErrorMessage name="buy_QTY" component="div" className="error" /> */}
+                                    </div>
+                                    <div className='form-input'>
+                                        <label className='input-field'>Buy Rate</label>
+
+                                        <input
+                                            className='input'
+                                            type="text"
+                                            placeholder="buy rate..."
+                                            name='buy_rate'
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.buy_rate}
+                                        />
+                                        {/* <ErrorMessage name="buy_rate" component="div" className="error" /> */}
+                                    </div>
+
+                                    <div className='form-input'>
+
+                                        <label className='input-field'>Buy Amount</label>
+                                        <input
+                                            className='input'
+                                            type="number"
+                                            placeholder="buy amount..."
+                                            name='buy_amount'
+
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.buy_amount}
+                                        />
+                                        {/* <ErrorMessage name="buy_amount" component="div" className="error" /> */}
+                                    </div>
+                                    <div className='form-input'>
+
+                                        <label className='input-field'>Broker Amount (Buy)</label>
+                                        <input
+                                            className='input'
+                                            type="number"
+                                            placeholder="Broker Amount (Buy)..."
+                                            name='buy_amount'
+
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.buy_broker_amount}
+                                        />
+                                        {/* <ErrorMessage name="buy_amount" component="div" className="error" /> */}
+                                    </div>
+                                    <div className='form-input'>
+
+                                        <label className='input-field'>FED amount (Buy)</label>
+                                        <input
+                                            className='input'
+                                            type="number"
+                                            placeholder="Fed amount (buy)..."
+                                            name='buy_amount'
+
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.buy_fed_amount}
+                                        />
+                                        {/* <ErrorMessage name="buy_amount" component="div" className="error" /> */}
+                                    </div>
                                 </div>
-                                <div className='form-input'>
-                                    <label className='input-field'>Buy Rate</label>
+                                <div className='sell_form_style'>
+                                    {/* --------------------Sell form data---------------------------------------------- */}
+                                    <div className='form-input'>
 
-                                    <input
-                                        className='input'
-                                        type="text"
-                                        placeholder="buy rate..."
-                                        name='buy_rate'
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.buy_rate}
-                                    />
-                                    <ErrorMessage name="buy_rate" component="div" className="error" />
-                                </div>
-                                <div className='form-input'>
+                                        <label className='input-field'>Sell QTY</label>
+                                        <input
+                                            className='input'
+                                            type="number"
+                                            placeholder="sell QTY..."
+                                            name='sell_QTY'
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.sell_QTY}
+                                        />
+                                        {/* <ErrorMessage name="sell_QTY" component="div" className="error" /> */}
+                                    </div>
+                                    <div className='form-input'>
 
-                                    <label className='input-field'>Sell QTY</label>
-                                    <input
-                                        className='input'
-                                        type="number"
-                                        placeholder="sell QTY..."
-                                        name='sell_QTY'
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.sell_QTY}
-                                    />
-                                    <ErrorMessage name="sell_QTY" component="div" className="error" />
-                                </div>
-                                <div className='form-input'>
+                                        <label className='input-field'>Sell Rate</label>
+                                        <input
+                                            className='input'
+                                            type="number"
+                                            placeholder="sell_rate..."
+                                            name='sell_rate'
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.sell_rate}
+                                        />
+                                        {/* <ErrorMessage name="sell_rate" component="div" className="error" /> */}
+                                    </div>
 
-                                    <label className='input-field'>Sell Rate</label>
-                                    <input
-                                        className='input'
-                                        type="number"
-                                        placeholder="sell_rate..."
-                                        name='sell_rate'
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.sell_rate}
-                                    />
-                                    <ErrorMessage name="sell_rate" component="div" className="error" />
-                                </div>
-                                <div className='form-input'>
+                                    <div className='form-input'>
 
-                                    <label className='input-field'>Buy Amount</label>
-                                    <input
-                                        className='input'
-                                        type="number"
-                                        placeholder="buy amount..."
-                                        name='buy_amount'
-                                        // onChange={(e)=>{
-                                        //     handleChange(e)
-                                        //     const buyAmount= e.target.value
-                                        //     const brokerAmount = (buyAmount * 5) /100;
-                                        //     setFieldValue("broker_amount",brokerAmount.toFixed(2))
-                                        // }}
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.buy_amount}
-                                    />
-                                    <ErrorMessage name="buy_amount" component="div" className="error" />
-                                </div>
-                                <div className='form-input'>
+                                        <label className='input-field'>Sell Amount</label>
+                                        <input
+                                            className='input'
+                                            type="number"
+                                            placeholder="sell amount..."
+                                            name='sell_amount'
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.sell_amount}
+                                        />
+                                        {/* <ErrorMessage name="sell_amount" component="div" className="error" /> */}
+                                    </div>
+                                    <div className='form-input'>
 
-                                    <label className='input-field'>Sell Amount</label>
-                                    <input
-                                        className='input'
-                                        type="number"
-                                        placeholder="sell amount..."
-                                        name='sell_amount'
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.sell_amount}
-                                    />
-                                    <ErrorMessage name="sell_amount" component="div" className="error" />
-                                </div>
-                                <div className='form-input'>
+                                        <label className='input-field'>Broker Amount (Sell)</label>
+                                        <input
+                                            className='input'
+                                            type="number"
+                                            placeholder="broker amount (Sell)..."
+                                            name='broker_amount'
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.sell_broker_amount}
 
-                                    <label className='input-field'>Broker Amount</label>
-                                    <input
-                                        className='input'
-                                        type="number"
-                                        placeholder="broker amount..."
-                                        name='broker_amount'
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.broker_amount}
-                                    // readOnly
-                                    />
-                                    <ErrorMessage name="broker_amount" component="div" className="error" />
-                                </div>
-                                <div className='form-input'>
+                                        />
+                                        {/* <ErrorMessage name="broker_amount" component="div" className="error" /> */}
+                                    </div>
+                                    <div className='form-input'>
 
-                                    <label className='input-field'>FED Amount</label>
-                                    <input
-                                        className='input'
-                                        type="number"
-                                        placeholder="fed amount..."
-                                        name='fed_amount'
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.fed_amount}
-                                    />
-                                    <ErrorMessage name="fed_amount" component="div" className="error" />
-                                </div>
-                                <div className='form-input'>
+                                        <label className='input-field'>FED Amount (sell)</label>
+                                        <input
+                                            className='input'
+                                            type="number"
+                                            placeholder="fed amount (sell)..."
+                                            name='fed_amount'
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.sell_fed_amount}
+                                        />
+                                        {/* <ErrorMessage name="fed_amount" component="div" className="error" /> */}
+                                    </div>
+                                    <div className='form-input'>
 
-                                    <label className='input-field'>Net Amount</label>
-                                    <input
-                                        className='input'
-                                        type="number"
-                                        placeholder="net amount..."
-                                        name='net_amount'
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.net_amount}
-                                    />
-                                    <ErrorMessage name="net_amount" component="div" className="error" />
+                                        <label className='input-field'>Net Amount</label>
+                                        <input
+                                            className='input'
+                                            type="number"
+                                            placeholder="net amount..."
+                                            name='net_amount'
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.net_amount}
+                                        />
+                                        {/* <ErrorMessage name="net_amount" component="div" className="error" /> */}
+                                    </div>
                                 </div>
-                                {errors.name && !touched.name && <div className="error">{errors.name}</div>}
+                                {/* {errors.name && !touched.name && <div className="error">{errors.name}</div>} */}
 
                             </div>
-                            {/* <div className='btn-style'>
-                                <div className='btn'>
 
-                                    <SendIcon style={{ color: '#fff', fontSize: 24 }} />
-                                    <button className='btn' type="submit">Submit</button>
-                                </div>
-                            </div> */}
                             <Box sx={{ '& > :not(style)': { m: 1 } }}>
 
                                 <Fab variant="extended" color="primary" type="submit">

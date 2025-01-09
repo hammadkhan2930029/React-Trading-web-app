@@ -10,17 +10,15 @@
 
 }
 
-.logo-style {
-    width: 30%;
-    /* background-color: rgb(177, 131, 220); */
-    align-items: flex-start;
+.drawer_logo {
+   width: 30%;
 
 
 
 }
 
 .logo {
-    width: 30%;
+    width: 4%;
     height: auto;
 }
 

@@ -36,7 +36,9 @@ thead.t_head {
 
 .t_head_row th {
     padding: 13px;
-    text-align: left;
+    text-align: center;
+    width: 6%;
+
 }
 
 /* Table Body Styling */
@@ -60,8 +62,14 @@ tbody.t_body tr {
 }
 
 .t_body_row td {
-    padding: 12px;
+
     color: #333;
+    
+}
+td{
+    text-align: center;
+
+    padding: 10px;
 }
 
 /* Responsive Design */
