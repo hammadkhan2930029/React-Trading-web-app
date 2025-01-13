@@ -115,12 +115,7 @@ const Navbar = (props) => {
          
 
               <img src={logo} className='logo' />
-            {/* <AccountBalanceIcon style={{ color: 'white', fontSize: 40 }} /> */}
-
-            {/* <Stack direction="row" spacing={2}>
-            <Avatar alt="Remy Sharp" src={logo} />
-          
-          </Stack> */}
+           
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (

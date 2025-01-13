@@ -1,50 +1,41 @@
-/* Table Container */
+ /* Table Container */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
+    /* margin: 20px 0; */
     font-size: 16px;
     text-align: left;
     background-color: #908b8b;
     border-radius: 8px;
     overflow: hidden;
-    table-layout: fixed;
+    table-layout: auto; /* Change from 'fixed' to 'auto' to make the table more flexible */
+    word-wrap: break-word; /* Ensures long words break within cells */
 }
 
 /* Table Header Styling */
 thead.t_head {
-    /* background-color: #4CAF50; */
     color: #fff;
     text-transform: uppercase;
-    /* font-weight: bold; */
 }
 
 .t_head_row {
     width: 100%;
     top: 0;
-    position: fixed;
-    /* background-color:#a8c4e6;
-     */
-    background-color:  #1976d2;
-
+    position: sticky; /* Changed 'fixed' to 'sticky' for smoother scrolling with header */
+    background-color: #1976d2;
     z-index: 1;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-
-    
-
 }
 
 .t_head_row th {
     padding: 13px;
     text-align: center;
-    width: 6%;
-
+    width: auto; /* Make header columns resize automatically */
 }
 
 /* Table Body Styling */
 tbody.t_body tr {
     border-bottom: 1px solid #ddd;
-
 }
 
 .t_body_row:nth-child(even) {
@@ -56,51 +47,55 @@ tbody.t_body tr {
 }
 
 .t_body_row:hover {
-    background-color: #e6ffe6;
-    /* Light green for hover */
+    background-color: #e6ffe6; /* Light green for hover */
     cursor: pointer;
 }
 
 .t_body_row td {
-
     color: #333;
-    
 }
-td{
+
+td {
     text-align: center;
-
     padding: 10px;
+    word-wrap: break-word; /* Ensures long text in cells breaks appropriately */
 }
 
-/* Responsive Design */
+/* Responsive Design for Smaller Screens */
+@media (max-width: 1024px) {
+    table {
+        font-size: 14px;
+    }
+
+    .t_head_row th, .t_body_row td {
+        padding: 10px 12px;
+    }
+}
+
 @media (max-width: 768px) {
     table {
         font-size: 14px;
     }
 
-    .t_head_row th,
-    .t_body_row td {
+    .t_head_row th, .t_body_row td {
         padding: 8px 10px;
     }
 }
 
 @media (max-width: 412px) {
     table {
-
-        font-size: 14px;
+        font-size: 12px; /* Adjust font size for very small screens */
     }
 
-    .t_head_row {
+    .t_head_row th {
         font-size: 12px;
     }
 
     .t_body_row {
         font-size: 10px;
-
     }
 
-    .t_head_row th,
-    .t_body_row td {
-        padding: 8px 10px;
+    .t_head_row th, .t_body_row td {
+        padding: 6px 8px; /* Reduce padding for smaller devices */
     }
 }
